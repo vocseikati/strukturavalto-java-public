@@ -3,8 +3,11 @@ package exam03;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -67,7 +70,7 @@ public class CruiseTest {
         cruise.bookPassenger(new Passenger("Jack Doe", CruiseClass.FIRST));
 
         List<String> names = cruise.getPassengerNamesOrdered();
-        assertEquals(List.of("Jack Doe", "Jack Smith", "John Doe"), names);
+        assertEquals(Arrays.asList("Jack Doe", "Jack Smith", "John Doe"), names);
     }
 
     @Test
@@ -87,7 +90,12 @@ public class CruiseTest {
         cruise.bookPassenger(new Passenger("Jack Doe", CruiseClass.FIRST));
 
         Map<CruiseClass, Integer> result = cruise.countPassengerByClass();
-        assertEquals(Map.of(CruiseClass.LUXURY, 2 , CruiseClass.FIRST, 1), result);
+        Map<CruiseClass, Integer> test = Stream.of(new Object[][] {
+                { CruiseClass.LUXURY, 2 },
+                { CruiseClass.FIRST, 1 },
+        }).collect(Collectors.toMap(data -> (CruiseClass) data[0], data -> (Integer) data[1]));
+
+        assertEquals(test, result);
     }
 
 }

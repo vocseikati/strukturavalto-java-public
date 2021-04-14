@@ -3,6 +3,7 @@ package hu.nive.ujratervezes.zarovizsga.kennel;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -60,6 +61,6 @@ public class KennelTest {
         kennel.playWith("Bigli", 4);
         kennel.playWith("Zokni", 2);
 
-        assertEquals(List.of("Bigli", "Morzsi"), kennel.getHappyDogNames(7));
+        assertEquals(Arrays.asList("Bigli", "Morzsi"), kennel.getHappyDogNames(7));
     }
 }
