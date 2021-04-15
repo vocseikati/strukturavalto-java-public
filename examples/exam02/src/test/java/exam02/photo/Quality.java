@@ -6,4 +6,5 @@ public enum Quality {
     ONE_STAR,
     TWO_STAR
 
+
 }

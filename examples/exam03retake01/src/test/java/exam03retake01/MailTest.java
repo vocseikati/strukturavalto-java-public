@@ -2,6 +2,7 @@ package exam03retake01;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +12,7 @@ public class MailTest {
     @Test
     void create() {
         Mail mail = new Mail(new Contact("John Doe", "johndoe@example.com"),
-                List.of(new Contact("Jane Doe", "janedoe@example.com"), new Contact("John Doe", "jackdoe@example.com")),
+                Arrays.asList(new Contact("Jane Doe", "janedoe@example.com"), new Contact("John Doe", "jackdoe@example.com")),
                         "Doe Family",
                 "Hi All!");
 

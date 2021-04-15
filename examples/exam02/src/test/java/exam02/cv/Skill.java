@@ -2,11 +2,14 @@ package exam02.cv;
 
 public class Skill {
 
-    protected String name;
-    protected Integer level;
+    private String name;
+    private int level;
 
-    public Skill(String name, Integer level) {
+    public Skill(String name, int level) {
         this.name = name;
+        if (level < 1 || level > 5){
+            throw new IllegalArgumentException("skill must be between 1 and 5!");
+        }
         this.level = level;
     }
 
@@ -14,15 +17,12 @@ public class Skill {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Integer getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    public void setLevel(Integer level) {
-        this.level = level;
-    }
+//    @Override
+//    public String toString() {
+//        return name + " (" + level + ")";
+//    }
 }

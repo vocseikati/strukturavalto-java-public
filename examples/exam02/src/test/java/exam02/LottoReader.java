@@ -11,8 +11,10 @@ import java.util.*;
 public class LottoReader {
 //    private int[] numbers = new int[90];
     Map<Integer, Integer> count = new HashMap<>();
+    private InputStream inputStream;
 
     public LottoReader(InputStream inputStream) {
+        this.inputStream = inputStream;
 
 //        T360 megoldás:
 //        try (

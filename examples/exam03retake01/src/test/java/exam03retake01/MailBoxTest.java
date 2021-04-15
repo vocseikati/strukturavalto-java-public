@@ -3,6 +3,7 @@ package exam03retake01;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,22 +15,22 @@ public class MailBoxTest {
     @BeforeEach
     void init() {
         Mail mail1 = new Mail(new Contact("John Doe", "johndoe@example.com"),
-                List.of(new Contact("Jane Doe", "janedoe@example.com"), new Contact("Jack Doe", "jackdoe@example.com")),
+                Arrays.asList(new Contact("Jane Doe", "janedoe@example.com"), new Contact("Jack Doe", "jackdoe@example.com")),
                 "Doe Family",
                 "Hi All!");
 
         Mail mail2 = new Mail(new Contact("John Doe", "johndoe@example.com"),
-                List.of(new Contact("John Smith", "johnsmith@example.com")),
+                Arrays.asList(new Contact("John Smith", "johnsmith@example.com")),
                 "Johnes",
                 "Hi!");
 
         Mail mail3 = new Mail(new Contact("John Doe", "johndoe@example.com"),
-                List.of(new Contact("Jane Smith", "janesmith@example.com")),
+                Arrays.asList(new Contact("Jane Smith", "janesmith@example.com")),
                 "John - Jane",
                 "Hello!");
 
         Mail mail4 = new Mail(new Contact("Jane Doe", "janedoe@example.com"),
-                List.of(new Contact("John Doe", "johndoe@example.com"), new Contact("Jack Doe", "jackdoe@example.com")),
+                Arrays.asList(new Contact("John Doe", "johndoe@example.com"), new Contact("Jack Doe", "jackdoe@example.com")),
                 "RE: Doe Family",
                 "Rerere!");
 
