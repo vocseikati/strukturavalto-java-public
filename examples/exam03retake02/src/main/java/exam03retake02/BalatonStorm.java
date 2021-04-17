@@ -2,52 +2,80 @@ package exam03retake02;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.Collator;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Locale;
+import java.util.*;
+
+import static com.sun.org.apache.xalan.internal.utils.SecuritySupport.getResourceAsStream;
 
 public class BalatonStorm {
+//
+//    public static final Gson GSON = new Gson();
+//    public static final String DB_PATH = "src/test/resources/exam03retake02/storm.json";
+//    private HashMap<Integer, Station> database;
+//
+//    public HashMap<Integer, Station> loadJSON(Path path) throws IOException {
+//        byte[] jsonBytes = Files.readAllBytes(path);
+//        String jsonStr = new String(jsonBytes, StandardCharsets.UTF_8);
+//        Type type = new TypeToken<HashMap<String, Station>>() {
+//        }.getType();
+//        return GSON.fromJson(jsonStr, type);
+//    }
+//
+//    protected void loadDB() throws IOException {
+//        Path path = Paths.get(DB_PATH);
+//        database = loadJSON(path);
+//    }
+//
+//    public void init() throws IOException {
+//        if (database == null) {
+//            database = new HashMap<>();
+//            loadDB();
+//        }
+//
+//        System.out.println("init has been called");
+//    }
+//
+//    public static void main(String[] args) throws IOException {
+//        BalatonStorm balaton = new BalatonStorm();
+//        balaton.init();
+//        HashMap<Integer, Station> json = balaton.loadJSON(Paths.get("src/test/resources/exam03retake02/storm.json"));
+//        System.out.println(json);
+//    }
 
-    public static final String LEVEL_PREFIX = "level";
-    public static final String STATION_PREFIX = "allomas";
 
     public List<String> getStationsInStorm(BufferedReader reader) throws IOException {
+        Collator collator = Collator.getInstance(new Locale("hu", "HU"));
+//        Map<String, Integer> map = new TreeMap<>(collator);
         List<String> stations = new ArrayList<>();
+        String station = "";
+        int level = 0;
         String line;
-        String station = null;
         while ((line = reader.readLine()) != null) {
-            if (isStation(line)) {
-                station = extractStationName(line);
+            if (line.contains("allomas")) {
+                station = line.substring(line.indexOf(":") + 3, line.indexOf(",") - 1);
             }
-            if (isStorm(line)) {
-                stations.add(station);
+            if (line.contains("level")) {
+                level = Integer.parseInt(line.substring(line.indexOf(":") + 2, line.indexOf(",")));
+                if (level == 3) {
+//                    map.put(station, level);
+                    stations.add(station);
+                }
             }
+
         }
-        //Collections.sort(stations, Collator.getInstance(new Locale("hu", "HU")));
-        stations.sort(Collator.getInstance(new Locale("hu", "HU")));
+        stations.sort(collator);
         return stations;
     }
 
-    private boolean isStation(String line) {
-        return line.contains(STATION_PREFIX);
-    }
-
-    private boolean isStorm(String line) {
-        if (!line.contains(LEVEL_PREFIX)) {
-            return false;
-        }
-        String part = line.substring(line.indexOf(": ") + 2, line.lastIndexOf(","));
-        int level = Integer.parseInt(part);
-        return level >= 3;
-    }
-
-    private String extractStationName(String line) {
-        return line.substring(line.indexOf(": \"") + 3, line.lastIndexOf("\""));
-    }
-
-    public static void main(String[] args) {
-        System.out.println(new BalatonStorm().extractStationName("\"allomas\": \"Balatonfüred\","));
-    }
+//    public static void main(String[] args) throws IOException {
+//
+//        BufferedReader reader = Files.newBufferedReader(Paths.get("stormtest.json"));
+//        System.out.println(getStationsInStorm(reader));
+//
+//
+//
+//
+//    }
 }

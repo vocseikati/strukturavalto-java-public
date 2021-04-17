@@ -1,34 +1,40 @@
 package exam03retake02;
 
-public class Todo {
+public class Todo implements Comparable<Todo> {
 
     private String text;
-
+    private State state;
     private int priority;
 
-    private State state = State.NON_COMPLETED;
-
     public Todo(String text, int priority) {
-        if (priority < 0 || priority > 5) {
+        if (priority < 1 || priority > 5){
             throw new IllegalArgumentException("Invalid priority: " + priority);
         }
         this.text = text;
+        this.state = State.NON_COMPLETED;
         this.priority = priority;
     }
 
-    public String getText() {
-        return text;
+    public void complete(){
+        this.state = State.COMPLETED;
     }
 
-    public int getPriority() {
-        return priority;
+
+
+    public String getText() {
+        return text;
     }
 
     public State getState() {
         return state;
     }
 
-    public void complete() {
-        state = State.COMPLETED;
+    public int getPriority() {
+        return priority;
+    }
+
+    @Override
+    public int compareTo(Todo o) {
+        return this.priority > o.priority ? 1 : -1;
     }
 }
