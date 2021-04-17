@@ -13,31 +13,34 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DogTypesTest {
 
-//        DogTypes dogTypes;
-//
-//        @BeforeEach
-//        void init() throws SQLException {
-//            MariaDbDataSource dataSource;
-//            dataSource = new MariaDbDataSource();
+        DogTypes dogTypes;
+
+        @BeforeEach
+        void init() throws SQLException {
+            MariaDbDataSource dataSource;
+            dataSource = new MariaDbDataSource();
 //            dataSource.setUrl("jdbc:mariadb://localhost:3306/employees?useUnicode=true");
+            dataSource.setUrl("jdbc:mysql://localhost/Pixam?useUnicode=true");
 //            dataSource.setUser("employees");
+            dataSource.setUser("root");
 //            dataSource.setPassword("employees");
-//
-//            Flyway flyway = Flyway.configure().dataSource(dataSource).load();
-//
-//            flyway.clean();
-//            flyway.migrate();
-//
-//            dogTypes = new DogTypes(dataSource);
-//
-//        }
-//
-//        @Test
-//        void testGetDogsByCountry() {
-//            List<String> types = dogTypes.getDogsByCountry("Hungary");
-//            assertEquals(9, types.size());
-//            assertTrue(types.contains("komondor"));
-//            assertTrue(types.contains("kuvasz"));
-//        }
+            dataSource.setPassword("helloworld");
+
+            Flyway flyway = Flyway.configure().dataSource(dataSource).load();
+
+            flyway.clean();
+            flyway.migrate();
+
+            dogTypes = new DogTypes(dataSource);
+
+        }
+
+        @Test
+        void testGetDogsByCountry() {
+            List<String> types = dogTypes.getDogsByCountry("Hungary");
+            assertEquals(9, types.size());
+            assertTrue(types.contains("komondor"));
+            assertTrue(types.contains("kuvasz"));
+        }
 
     }
