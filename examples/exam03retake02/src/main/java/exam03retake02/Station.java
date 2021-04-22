@@ -7,11 +7,11 @@ public class Station {
     private String lat;
     private String lng;
     private String description;
-    private int level;
+    private Integer level;
     private String groupId;
     private String stationType;
 
-    public Station(Integer id, String allomas, String lat, String lng, String description, int level, String groupId, String stationType) {
+    public Station(Integer id, String allomas, String lat, String lng, String description, Integer level, String groupId, String stationType) {
         this.id = id;
         this.allomas = allomas;
         this.lat = lat;
@@ -20,6 +20,9 @@ public class Station {
         this.level = level;
         this.groupId = groupId;
         this.stationType = stationType;
+    }
+
+    public Station() {
     }
 
     public Integer getId() {
@@ -42,7 +45,7 @@ public class Station {
         return description;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
@@ -52,6 +55,38 @@ public class Station {
 
     public String getStationType() {
         return stationType;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setAllomas(String allomas) {
+        this.allomas = allomas;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setStationType(String stationType) {
+        this.stationType = stationType;
     }
 
     @Override
