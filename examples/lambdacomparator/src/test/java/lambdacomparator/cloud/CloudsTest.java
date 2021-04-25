@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,7 +19,7 @@ public class CloudsTest {
 
     @BeforeEach
     public void initStorages() {
-        storagesWithoutFree = List.of(
+        storagesWithoutFree = Arrays.asList(
                 new CloudStorage("iDrive", 2000, PayPeriod.ANNUAL, 52.12),
                 new CloudStorage("iDrive", 5000, PayPeriod.ANNUAL, 74.62),
                 new CloudStorage("pCloud", 500, PayPeriod.LIFETIME, 175.0),
@@ -34,7 +35,7 @@ public class CloudsTest {
                 new CloudStorage("OneDrive", 100, PayPeriod.MONTHLY, 1.99)
         );
         storages = new ArrayList<>(storagesWithoutFree);
-        storages.addAll(List.of(
+        storages.addAll(Arrays.asList(
                 new CloudStorage("iDrive", 5),
                 new CloudStorage("Zoolz", 1),
                 new CloudStorage("Mega", 50),
@@ -86,22 +87,22 @@ public class CloudsTest {
         List<CloudStorage> worstStorages = clouds.worstOffers(storages);
 
         assertEquals(3, worstStorages.size());
-        assertEquals(List.of("Zoolz", "Mega", "OneDrive"), worstStorages.stream().map(CloudStorage::getProvider).collect(Collectors.toList()));
-        assertEquals(List.of(100, 200, 100), worstStorages.stream().map(CloudStorage::getSpace).collect(Collectors.toList()));
-        assertEquals(List.of(PayPeriod.ANNUAL, PayPeriod.MONTHLY, PayPeriod.MONTHLY), worstStorages.stream().map(CloudStorage::getPeriod).collect(Collectors.toList()));
-        assertEquals(List.of(35.88, 4.99, 1.99), worstStorages.stream().map(CloudStorage::getPrice).collect(Collectors.toList()));
+        assertEquals(Arrays.asList("Zoolz", "Mega", "OneDrive"), worstStorages.stream().map(CloudStorage::getProvider).collect(Collectors.toList()));
+        assertEquals(Arrays.asList(100, 200, 100), worstStorages.stream().map(CloudStorage::getSpace).collect(Collectors.toList()));
+        assertEquals(Arrays.asList(PayPeriod.ANNUAL, PayPeriod.MONTHLY, PayPeriod.MONTHLY), worstStorages.stream().map(CloudStorage::getPeriod).collect(Collectors.toList()));
+        assertEquals(Arrays.asList(35.88, 4.99, 1.99), worstStorages.stream().map(CloudStorage::getPrice).collect(Collectors.toList()));
     }
 
     @Test
     public void testWorstOffersWithOneProvider() {
         Clouds clouds = new Clouds();
 
-        List<CloudStorage> worstStorages = clouds.worstOffers(List.of(new CloudStorage("iDrive", 2000, PayPeriod.ANNUAL, 52.12)));
+        List<CloudStorage> worstStorages = clouds.worstOffers(Arrays.asList(new CloudStorage("iDrive", 2000, PayPeriod.ANNUAL, 52.12)));
 
         assertEquals(1, worstStorages.size());
-        assertEquals(List.of("iDrive"), worstStorages.stream().map(CloudStorage::getProvider).collect(Collectors.toList()));
-        assertEquals(List.of(2000), worstStorages.stream().map(CloudStorage::getSpace).collect(Collectors.toList()));
-        assertEquals(List.of(PayPeriod.ANNUAL), worstStorages.stream().map(CloudStorage::getPeriod).collect(Collectors.toList()));
-        assertEquals(List.of(52.12), worstStorages.stream().map(CloudStorage::getPrice).collect(Collectors.toList()));
+        assertEquals(Arrays.asList("iDrive"), worstStorages.stream().map(CloudStorage::getProvider).collect(Collectors.toList()));
+        assertEquals(Arrays.asList(2000), worstStorages.stream().map(CloudStorage::getSpace).collect(Collectors.toList()));
+        assertEquals(Arrays.asList(PayPeriod.ANNUAL), worstStorages.stream().map(CloudStorage::getPeriod).collect(Collectors.toList()));
+        assertEquals(Arrays.asList(52.12), worstStorages.stream().map(CloudStorage::getPrice).collect(Collectors.toList()));
     }
 }
