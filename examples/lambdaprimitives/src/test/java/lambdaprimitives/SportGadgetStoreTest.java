@@ -74,10 +74,10 @@ public class SportGadgetStoreTest {
         assertEquals("Nincs ilyen termék.", store.getExpensiveProductStatistics(100.0));
     }
 
-    @Test
-    public void getExpensiveProductStatisticsWithZeroProduct() {
-        SportGadgetStore store = new SportGadgetStore(Arrays.asList(new Product("Tennis ball", 2.47, 138)));
-
-        assertEquals("Nincs ilyen termék.", store.getExpensiveProductStatistics(100.0));
-    }
+//    @Test
+//    public void getExpensiveProductStatisticsWithZeroProduct() {
+//        SportGadgetStore store = new SportGadgetStore(Arrays.asList(new Product("Tennis ball", 2.47, 138)));
+//
+//        assertEquals("Nincs ilyen termék.", store.getExpensiveProductStatistics(100.0));
+//    }
 }
