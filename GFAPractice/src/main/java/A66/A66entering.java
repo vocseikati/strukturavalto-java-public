@@ -29,6 +29,7 @@ public class A66entering {
                 map.put(split[12], map.getOrDefault(split[12], 0) + 1);
             }
         }
+//        System.out.println(map);
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         try (BufferedWriter writer = Files.newBufferedWriter(Paths.get("a66entering.json"))) {
 

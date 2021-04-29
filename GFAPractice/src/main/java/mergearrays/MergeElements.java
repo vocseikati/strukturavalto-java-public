@@ -24,7 +24,6 @@ public class MergeElements {
             } else {
                 result[i] = input2[i / 2];
             }
-
         }
         if (input1.length >= input2.length) {
             for (int i = minLength; i < input1.length; i++) {
